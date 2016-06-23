@@ -1,7 +1,7 @@
 app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 
 	// This function links to Firebase and gets the user's data of events that he or she created.
-	var getUserContacts = function (){
+	var getUserEvents = function (){
 		var userevents = [];
 		let user = AuthFactory.getUser();
 		return $q(function (resolve, reject){
@@ -38,7 +38,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 	var postNewEvent = function(newEvent) {
 		let user = AuthFactory.getUser();
 		return $q(function(resolve, reject){
-			$http.post("https://oj-addressbook.firebaseio.com/events.json",
+			$http.post("https://usdancemap.firebaseio.com/events.json",
 				JSON.stringify({
 					Name: newEvent.Name,
 					EventLocation: newEvent.EventLocation,
@@ -56,4 +56,20 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
+	var getGoogleMapKey = function () {
+		return $q(function (resolve, reject){
+			$http.get("map.json")
+			.success(function (mapKeyObject){
+				var mapKey = mapKeyObject.googlemaps.key
+				console.log("parse", mapKey);
+				resolve(mapKey) 
+			})
+			.error(function(error){
+				reject(error)
+			})
+		})
+	}
+
+
+		return {getUserEvents:getUserEvents, deleteEvent:deleteEvent, postNewEvent:postNewEvent, getGoogleMapKey:getGoogleMapKey}
 })
