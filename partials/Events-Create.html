@@ -1,32 +1,43 @@
 <section class= "text-center">
 	<h1>Create Your Event</h1>
 	<form>
-		<div>
-			Name:<input type="text" placeholder = "Name">
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control"placeholder = "Event Name"ng-model="newTask.Name"/>
+			</div>
 		</div>
-		<div>
-			Venue:
-			<input type="text" placeholder = "Place">
-			<input type="text" placeholder = "Address">
-			<input type="text" placeholder = "Location">
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Event Location"ng-model="newTask.EventLocation"/>
+			</div>
 		</div>
-		<div>
-			Promoter:
-			<input type="text" placeholder = "Name">
-			<input type="text" placeholder = "###-###-####">
-			<input type="text" placeholder = "Email">
-		</div>
-		<div>
-			Pass Cost Range:<input type="text" placeholder = "$$$-$$$">
-		</div>
-		<div>
-			Hotel Cost Range:<input type="text" placeholder = "$$$-$$$">
-		</div>
-		<div>
-			Event URL<input type="text" placeholder = "URL">
-		</div>
-		<div>
-			<button class="btn btn-info" ng-click="createEvent()">Submit</button>
-		</div>
-	</form>
-</section>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Address"ng-model="newTask.Address"/>
+			</div>
+			<div class="form-group">
+				<div class="panel panel-default">
+					<input type="text" class= "form-control" placeholder = "Promoter Email"ng-model="newTask.PromoterEmail"/>
+				</div>
+				<div class="form-group">
+					<div class="panel panel-default">
+						<input type="text" class= "form-control" placeholder = "Full Pass Cost" ng-model="newTask.FullPassCost"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="panel panel-default">
+						<input type="text" class= "form-control" placeholder = "Hotel Cost" ng-model="newTask.HotelCost"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="panel panel-default">
+						<input type="text" class= "form-control" placeholder = "Event Website" ng-model="newTask.EventURL"/>
+					</div>
+				</div>
+				<div class="text-center">
+					<div class="text-center">
+						<button class="btn btn-default" ng-click="createEvent()">Submit</button>
+					</div>
+				</div>
+			</form>
+		</section>

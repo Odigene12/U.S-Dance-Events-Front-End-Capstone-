@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="lib/bower_components/angular-google-places-autocomplete/src/autocomplete.css">
   <link rel="stylesheet" type="text/css" href="lib/css/main.css">
 </head>
-<body ng-app="USDance">
-  <div ng-controller="IndexCtrl">
-    <div ng-include="'./partials/nav-bar.html'"></div>
-    <div ng-view>
+<body ng-app="USDance" ng-controller= "IndexCtrl" background = "images/Salsa.gif">
+  <div ng-include="'./partials/nav-bar.html'"></div>
+  <div ng-view>
   </div>
 
 
@@ -22,8 +22,11 @@
   <script type="text/javascript" src = "lib/bower_components/angularfire/dist/angularfire.min.js"></script>
   <script src="lib/bower_components/lodash/dist/lodash.min.js"></script>
   <script src="lib/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
-  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&callback=initMap"></script> -->
+   <!-- // <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> -->
   <script src="lib/bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <script src="lib/bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
   <script type="text/javascript" src = "app/app.js"></script>
   <script type="text/javascript" src = "app/factories/AuthFactory.js"></script>
   <script type="text/javascript" src = "app/factories/DanceFactory.js"></script>
@@ -33,6 +36,8 @@
   <script type="text/javascript" src = "app/controllers/LoginCtrl.js"></script>
   <script type="text/javascript" src = "app/controllers/UserEventsCtrl.js"></script>
   <script type="text/javascript" src = "app/controllers/IndexCtrl.js"></script>
-</div>
+  <script type="text/javascript" src = "app/controllers/MapCtrl.js"></script>
+  <script type="text/javascript" src = "app/controllers/EventDetailsCtrl.js"></script>
+  <script type="text/javascript" src = "app/controllers/EditEventCtrl.js"></script>
 </body>
 </html>

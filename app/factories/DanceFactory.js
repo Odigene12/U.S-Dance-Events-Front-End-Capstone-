@@ -8,11 +8,11 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 			$http.get(`${firebaseURL}events.json?orderBy="uid"&equalTo="${user.uid}"`)
 			.success(function (eventObject){
 				var eventsList = eventObject;
-					// this is looping through array of objects that it got from firebase through the contact0 and so on and extracting each object.
+					// this is looping through array of objects that it got from firebase through the events json and so on and extracting each object.
 					Object.keys(eventsList).forEach(function(key){
-								// here, it is giving an "id" property to each item in that array and setting its key "contact0 and so on" equal to the id.
+								// here, it is giving an "id" property to each item in that array and setting its key "event1 and so on" equal to the id.
 								eventsList[key].id=key;
-								// pushing it into the empty array at the top "var contacts = []"
+								// pushing it into the empty array at the top "var userevents = []"
 								userevents.push(eventsList[key]);
 							});
 					resolve(userevents);
@@ -42,9 +42,11 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 				JSON.stringify({
 					Name: newEvent.Name,
 					EventLocation: newEvent.EventLocation,
-					PromoterInfo: newEvent.PromoterInfo,
-					PassCost: newEvent.PassCost,
+					Address: newEvent.Address,
+					PromoterEmail: newEvent.PromoterEmail, 
+					FullPassCost: newEvent.FullPassCost,
 					HotelCost: newEvent.HotelCost,
+					EventURL: newEvent.EventURL,
 					uid: user.uid
 				})
 				)
@@ -56,7 +58,44 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
-	var getGoogleMapKey = function () {
+	var getEvent = function (eventId){
+		return $q(function(resolve, reject){
+			$http.get(firebaseURL + "events/" + eventId + ".json")
+				.success(function(itemObject){
+					resolve(itemObject);
+				})
+			.error(function(error){
+				reject(error);
+				});
+		});
+	
+	};
+
+	var updateEvent = function(eventId, newEvent){
+        let user = AuthFactory.getUser();
+        return $q(function(resolve, reject) {
+            $http.put(
+            	firebaseURL + "events/" + eventId + ".json",
+                JSON.stringify({
+                    Name: newEvent.Name,
+					EventLocation: newEvent.EventLocation,
+					Address: newEvent.Address,
+					PromoterEmail: newEvent.PromoterEmail, 
+					FullPassCost: newEvent.FullPassCost,
+					HotelCost: newEvent.HotelCost,
+					EventURL: newEvent.EventURL,
+					uid: user.uid
+                })
+            )
+            .success(
+                function(objectFromFirebase) {
+                    resolve(objectFromFirebase);
+                }
+            );
+        });
+    };
+
+var getGoogleMapKey = function () {
 		return $q(function (resolve, reject){
 			$http.get("map.json")
 			.success(function (mapKeyObject){
@@ -71,5 +110,6 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 	}
 
 
-		return {getUserEvents:getUserEvents, deleteEvent:deleteEvent, postNewEvent:postNewEvent, getGoogleMapKey:getGoogleMapKey}
+
+	return {getUserEvents:getUserEvents, deleteEvent:deleteEvent, postNewEvent:postNewEvent, getEvent:getEvent, updateEvent:updateEvent, getGoogleMapKey:getGoogleMapKey}
 })

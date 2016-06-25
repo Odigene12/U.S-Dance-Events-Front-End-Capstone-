@@ -3,5 +3,6 @@
 	<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 
 
-	<button ng-click="searchEvent()">Search</button>
+	<input type="text" g-places-autocomplete ng-model="place"/>
+	<pre>{{place | json}}</pre>
 </section>

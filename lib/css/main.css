@@ -1,2 +1,28 @@
 .angular-google-map-container {
   height: 400px; }
+
+body {
+  background-color: burlywood;
+  font-family: "lucida calligraphy",arial,'sans serif';
+  font-size: initial;
+  color: #090505; }
+
+.panel {
+  background-color: yellow; }
+
+.panel-default {
+  border-color: black;
+  border-width: 2px;
+  margin: 10px;
+  float: left;
+  width: 175; }
+
+.panel-default > .panel-heading {
+  color: black; }
+
+.navbar-default {
+  background-color: cyan;
+  text-color: black; }
+
+h1 {
+  text-align: center; }

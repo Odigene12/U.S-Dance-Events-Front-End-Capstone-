@@ -1,6 +1,8 @@
-app.controller("IndexCtrl", function($scope, EventStorage){
-	
-
+app.controller("IndexCtrl", function($scope, $sce, EventStorage){
+EventStorage.getGoogleMapKey().then(function (key){
+    $scope.mapKey = key;
+    console.log("",$scope.mapKey);
+})
 	 $scope.map = {
             center: {
               latitude: 38.6579531,
@@ -17,4 +19,5 @@ app.controller("IndexCtrl", function($scope, EventStorage){
         };        
             // console.log($scope.map); 
             // $scope.isOffline = false;
+
 })
