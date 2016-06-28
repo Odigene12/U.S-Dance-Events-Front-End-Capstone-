@@ -1,4 +1,4 @@
-var app = angular.module("USDance", ["ngRoute", "uiGmapgoogle-maps", "google.places"])
+var app = angular.module("USDance", ["ngRoute", "ngMap"])
 .constant("firebaseURL", "https://usdancemap.firebaseio.com/")
 
 let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
@@ -57,29 +57,8 @@ app.config (function($routeProvider){
 	otherwise('event/search')
 
 });
+   
 
-// let getGoogleMapKey = function () {
-// 		return $q(function (resolve, reject){
-// 			$http.get("map.json")
-// 			.success(function (mapKeyObject){
-// 				var mapKey = mapKeyObject.googlemaps.key
-// 				console.log("parse", mapKey);
-// 				resolve(mapKey) 
-// 			})
-// 			.error(function(error){
-// 				reject(error)
-// 			})
-// 		})
-// 	}
-
-app.config(function(uiGmapGoogleMapApiProvider) {
-	uiGmapGoogleMapApiProvider.configure({
-           key: '',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
-    console.log(uiGmapGoogleMapApiProvider);
-})
 
 // this function is assigning the link to my Firebase url to a variable that will be used to decide whether or not the user is authorized on the Firebase account to make changes.
 app.run(($location) => {
@@ -92,3 +71,6 @@ eventRef.onAuth(authData => {
 	}
 })
 })
+
+
+

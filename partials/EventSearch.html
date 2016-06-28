@@ -1,8 +1,36 @@
 <section class="text-center">
 	<h1> Search Event</h1>
-	<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 
 
-	<input type="text" g-places-autocomplete ng-model="place"/>
-	<pre>{{place | json}}</pre>
+
+<ng-map zoom="4" center="[38.6579531, -110.3788686]">
+  <marker ng-repeat="event in danceEvents"
+  position="{event.EventLocation}"
+  title="{{event.City}},{{event.State}}"> 
+  </marker>
+</ng-map> 
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+	<ui-gmap-markers ng-repeat="event in danceEvents"
+		
+
+	>
+</ui-gmap-markers> -->
+<!-- 
+</ui-gmap-google-map> -->
+
+
+
+
 </section>

@@ -41,7 +41,12 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 			$http.post("https://usdancemap.firebaseio.com/events.json",
 				JSON.stringify({
 					Name: newEvent.Name,
-					EventLocation: newEvent.EventLocation,
+					EventCity: newEvent.EventCity,
+					EventState: newEvent.EventState,
+					EventLocation:{
+						latitude: newEvent.latitude,
+						longitude: newEvent.longitude
+					},
 					Address: newEvent.Address,
 					PromoterEmail: newEvent.PromoterEmail, 
 					FullPassCost: newEvent.FullPassCost,
@@ -61,55 +66,44 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 	var getEvent = function (eventId){
 		return $q(function(resolve, reject){
 			$http.get(firebaseURL + "events/" + eventId + ".json")
-				.success(function(itemObject){
-					resolve(itemObject);
-				})
+			.success(function(eventObject){
+				resolve(eventObject);
+			})
 			.error(function(error){
 				reject(error);
-				});
+			});
 		});
-	
+		
 	};
 
 	var updateEvent = function(eventId, newEvent){
-        let user = AuthFactory.getUser();
-        return $q(function(resolve, reject) {
-            $http.put(
-            	firebaseURL + "events/" + eventId + ".json",
-                JSON.stringify({
-                    Name: newEvent.Name,
-					EventLocation: newEvent.EventLocation,
+		let user = AuthFactory.getUser();
+		return $q(function(resolve, reject) {
+			$http.put(
+				firebaseURL + "events/" + eventId + ".json",
+				JSON.stringify({
+					Name: newEvent.Name,
+					EventCity: newEvent.EventCity,
+					EventState: newEvent.EventState,
+					EventLocation: newEvent.EventLocation, 
 					Address: newEvent.Address,
 					PromoterEmail: newEvent.PromoterEmail, 
 					FullPassCost: newEvent.FullPassCost,
 					HotelCost: newEvent.HotelCost,
 					EventURL: newEvent.EventURL,
 					uid: user.uid
-                })
-            )
-            .success(
-                function(objectFromFirebase) {
-                    resolve(objectFromFirebase);
-                }
-            );
-        });
-    };
-
-var getGoogleMapKey = function () {
-		return $q(function (resolve, reject){
-			$http.get("map.json")
-			.success(function (mapKeyObject){
-				var mapKey = mapKeyObject.googlemaps.key
-				console.log("parse", mapKey);
-				resolve(mapKey) 
-			})
-			.error(function(error){
-				reject(error)
-			})
-		})
-	}
+				})
+				)
+			.success(
+				function(objectFromFirebase) {
+					resolve(objectFromFirebase);
+				}
+				);
+		});
+	};
 
 
 
-	return {getUserEvents:getUserEvents, deleteEvent:deleteEvent, postNewEvent:postNewEvent, getEvent:getEvent, updateEvent:updateEvent, getGoogleMapKey:getGoogleMapKey}
+
+	return {getUserEvents:getUserEvents, deleteEvent:deleteEvent, postNewEvent:postNewEvent, getEvent:getEvent, updateEvent:updateEvent}
 })

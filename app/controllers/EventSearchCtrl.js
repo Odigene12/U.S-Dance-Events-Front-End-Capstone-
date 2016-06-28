@@ -1,22 +1,18 @@
-app.controller("EventSearchCtrl", function($scope, $http, EventStorage) {	
-$scope.searchEvent = function () {
-	EventStorage.postNewEvent().then(function (data){
-		console.log(data);
+app.controller("EventSearchCtrl", function($scope, $http, EventStorage, LocationFactory, NgMap){
+
+
+	EventStorage.getUserEvents().then(function (response){
+		$scope.danceEvents = response[0];
+		console.log($scope.danceEvents);
 	})
-}
-	$scope.map = {
-	center: {
-		latitude: 38.6579531,
-		longitude: -110.3788686
-	},
-	zoom: 4,
-	options: {                    
-		streetViewControl: false,
-		mapTypeControl: false,
-		scaleControl: false,
-		rotateControl: false,
-		zoomControl: false
-	}
-};
+
+NgMap.getMap().then(function(map) {
+    console.log(map.getCenter());
+    console.log('markers', map.markers);
+    console.log('shapes', map.shapes);
+  });
+
+
+
 
 })	

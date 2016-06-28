@@ -1,7 +1,7 @@
-app.controller("UserEventsCtrl", function($scope, $http, $location, EventStorage){
+app.controller("UserEventsCtrl", function($scope, $http, $location, EventStorage, LocationFactory){
 	$scope.events = [];
 
-	//this is where the Eventstorage factory is called since it has a function that gets the Events from Firebase ("getEvents") then I want to set the empty array ("$scope.Events") equal to the object array that was just received from Firebase ("eventList").
+	//this is where the Eventstorage factory is called since it has a function that gets the Events from Firebase ("getUserEvents") then I want to set the empty array ("$scope.Events") equal to the object array that was just received from Firebase ("eventList").
 	EventStorage.getUserEvents().then(function(eventList){
 		$scope.events = eventList;	
 	});
