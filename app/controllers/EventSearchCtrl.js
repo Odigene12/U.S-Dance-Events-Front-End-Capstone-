@@ -1,5 +1,4 @@
-app.controller("EventSearchCtrl", function($scope, $http, EventStorage, LocationFactory, NgMap){
-
+app.controller("EventSearchCtrl", function($scope, $http, $routeParams, EventStorage, LocationFactory, NgMap, mapKey){
 
 	EventStorage.getUserEvents().then(function (response){
 		$scope.danceEvents = response[0];
@@ -11,8 +10,6 @@ NgMap.getMap().then(function(map) {
     console.log('markers', map.markers);
     console.log('shapes', map.shapes);
   });
-
-
 
 
 })	

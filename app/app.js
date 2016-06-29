@@ -1,6 +1,6 @@
 var app = angular.module("USDance", ["ngRoute", "ngMap"])
 .constant("firebaseURL", "https://usdancemap.firebaseio.com/")
-
+app.constant("googleMapsURL", "http://maps.google.com/maps/api/js")
 let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 	if(AuthFactory.isAuthenticated()){
 		console.log("User is authenticated, resolve route promise");
