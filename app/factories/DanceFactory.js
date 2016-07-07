@@ -44,6 +44,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 					EventCity: newEvent.EventCity,
 					EventState: newEvent.EventState,
 					EventLocation:{
+						id: newEvent.id,
 						latitude: newEvent.latitude,
 						longitude: newEvent.longitude
 					},

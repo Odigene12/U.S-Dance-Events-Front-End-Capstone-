@@ -40,7 +40,7 @@ app.controller("LoginCtrl", function($scope, $rootScope, $location, firebaseURL,
 				// This is where it tells the application the user is authorized
 				$rootScope.isActive = true;
 				// this takes you back to the base or home page right after authentication.
-				$location.path("/");
+				$location.path("/event/search");
 				$scope.$apply();
 			})
 	};

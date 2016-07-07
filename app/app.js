@@ -1,6 +1,6 @@
-var app = angular.module("USDance", ["ngRoute", "ngMap"])
+var app = angular.module("USDance", ["ngRoute", "uiGmapgoogle-maps"])
 .constant("firebaseURL", "https://usdancemap.firebaseio.com/")
-app.constant("googleMapsURL", "http://maps.google.com/maps/api/js")
+
 let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 	if(AuthFactory.isAuthenticated()){
 		console.log("User is authenticated, resolve route promise");
@@ -14,8 +14,8 @@ let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 app.config (function($routeProvider){
 	$routeProvider.
 	when('/', {
-		templateUrl: 'partials/EventSearch.html',
-		controller: 'EventSearchCtrl'
+		templateUrl: 'partials/Login.html',
+		controller: 'LoginCtrl'
 	}).
 	when('/event/search', {
 		templateUrl: 'partials/EventSearch.html',

@@ -1,15 +1,34 @@
-app.controller("EventSearchCtrl", function($scope, $http, $routeParams, EventStorage, LocationFactory, NgMap, mapKey){
+app.controller("EventSearchCtrl", function($scope, EventStorage){
+	$scope.dataArray = []
+	$scope.eventsHere = {}
 
-	EventStorage.getUserEvents().then(function (response){
-		$scope.danceEvents = response[0];
-		console.log($scope.danceEvents);
-	})
+	$scope.map = { 
+		center: { 
+			latitude: 37.4419, 
+			longitude: -95.712891 
+		}, 
+		zoom: 4,
+		bounds: {}
+	}
+$scope.$watch(function() {
+      return $scope.map.bounds;
+    })
+	
+		EventStorage.getUserEvents().then(function (data){
+			for (var i=0; i<data.length; i++){
+				var dataObject = data[i].EventLocation
+				$scope.dataArray.push(dataObject)
+				
+				
+			}
 
-NgMap.getMap().then(function(map) {
-    console.log(map.getCenter());
-    console.log('markers', map.markers);
-    console.log('shapes', map.shapes);
-  });
+			console.log($scope.dataArray);
+		})
 
 
-})	
+		
+EventStorage.getUserEvents().then(function(eventList){
+		$scope.eventsHere = eventList;	
+	});
+
+}); 

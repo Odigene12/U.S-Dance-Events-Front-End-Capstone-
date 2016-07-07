@@ -23,7 +23,7 @@
 		</div>
 		<div class="form-group">
 			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Promoter Email"ng-model="newTask.PromoterEmail"/>
+				<input type="email" name="input" class= "form-control" placeholder = "Promoter Email"ng-model="newTask.PromoterEmail" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -38,13 +38,11 @@
 		</div>
 		<div class="form-group">
 			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Event Website" ng-model="newTask.EventURL"/>
+				<input type="url" class= "form-control" placeholder = "Event Website" ng-model="newTask.EventURL"/>
 			</div>
 		</div>
-		<div class="text-center">
 			<div class="text-center">
-				<button class="btn btn-default" ng-click="createEvent()">Submit</button>
+				<button class="btn btn-default create" ng-click="createEvent()">Submit</button>
 			</div>
-		</div>
 	</form>
 </section>

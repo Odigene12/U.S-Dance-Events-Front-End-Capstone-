@@ -5,7 +5,7 @@ app.factory("LocationFactory", function($q, $http, mapKey){
 			return $q(function (resolve, reject){
 			$http.get(url)
 			.success(function (locationObject){
-				console.log(locationObject);
+				// console.log(locationObject);
 				var userLocation = locationObject.results[0].geometry.location;
 				resolve(userLocation)
 
