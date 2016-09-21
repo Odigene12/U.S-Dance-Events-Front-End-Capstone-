@@ -1,24 +1,6 @@
 "use strict"
 app.controller("CreateEventCtrl", function($scope, $location, EventStorage, LocationFactory){
 
-
-	// var getLastId = function () {
-	// 	EventStorage.getUserEvents().then(function (data){
-	// 		let idArray = []
-	// 		for (var i=0; i<data.length; i++){
-	// 			idArray.push(data[i].EventLocation.id)
-	// 		}
-	// 	// sorts array by numbers
-	// 		idArray.sort(function(a, b){
-	// 		return a-b
-	// 	})
-	// 	// get last number
-	// 	console.log("idArray", idArray );
-	// 	counter = idArray.pop()
-	// 	console.log("counter", counter);
-	// })
-	// 	return counter
-	// }()
 		// Create object for new event created by user to save in firebase
 		$scope.newTask = {
 			Name:"",
