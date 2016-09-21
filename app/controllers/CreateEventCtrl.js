@@ -21,18 +21,24 @@ app.controller("CreateEventCtrl", function($scope, $location, EventStorage, Loca
 			EventStorage.getUserEvents().then(function (data){
 				$scope.newTask.id = data.length+1
 
-				
-			
-			
-			LocationFactory.getUserLocation($scope.newTask.EventCity, $scope.newTask.EventState).then(function (response){
-				$scope.newTask.latitude=response.lat				
-				$scope.newTask.longitude=response.lng
+				if (!$scope.newTask.EventURL.startsWith("http://" || "https://" || "www."))
+				{
+					$scope.newTask.EventURL = "http://www." + $scope.newTask.EventURL
+				}
 
-				EventStorage.postNewEvent($scope.newTask)
-				.then(function successCallback(response) {
-					$location.url("/event/search")
+					LocationFactory.getUserLocation($scope.newTask.EventCity, $scope.newTask.EventState).then(function (response){
+						$scope.newTask.latitude=response.lat				
+						$scope.newTask.longitude=response.lng
+
+						EventStorage.postNewEvent($scope.newTask)
+						.then(function successCallback(response) {
+							$location.url("/event/search")
+						})
+					})
 				})
-			})
-		})
-	}
-	})
+
+
+
+			}
+		});
+	

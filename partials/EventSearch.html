@@ -37,10 +37,10 @@
 				<table class="table">
 					<div>Location: {{event.EventCity}}, {{event.EventState}}</div>
 					<div>Address: {{event.Address}}</div>
-					<div>Promoter: {{event.PromoterEmail}}</div>	
+					<div>Promoter: <a href="mailto{{event.PromoterEmail}}"> {{event.PromoterEmail}}</a></div>	
 					<div>FullPass Cost: ${{event.FullPassCost}}</div>
 					<div>Hotel Cost: ${{event.HotelCost}}</div>	
-					<div>Website: <a ng-href = "#/event/{{event.EventURL}}">{{event.EventURL}}</a></div>	
+					<div>Website: <a href="{{event.EventURL}}">{{event.EventURL}} </a></div>	
 				</table>	
 			</div>
 		</div>

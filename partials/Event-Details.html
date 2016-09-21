@@ -3,10 +3,10 @@
 
 <h2 class="text-center">Event Location: {{selectedEvent.EventCity}}, {{selectedEvent.EventState}}</h2>
 <h2 class="text-center">Address: {{selectedEvent.Address}}</h2>
-<h2 class="text-center">Promoter Email: {{selectedEvent.PromoterEmail}}</h2>
+<h2 class="text-center">Promoter Email: <a href="mailto{{event.PromoterEmail}}"> {{event.PromoterEmail}}</a></h2>
 <h2 class="text-center">Full Pass: ${{selectedEvent.FullPassCost}}</h2>
 <h2 class="text-center">Hotel: ${{selectedEvent.HotelCost}}</h2>
-<h2 class="text-center">Website:{{selectedEvent.EventURL}}</h2>
+<h2 class="text-center">Website:<a href="{{event.EventURL}}">{{event.EventURL}} </a></h2>
 
 
 </div>
