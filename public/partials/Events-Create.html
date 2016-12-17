@@ -1,0 +1,48 @@
+<section class= "text-center">
+	<h1>Create Your Event</h1>
+	<form>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control"placeholder = "Event Name"ng-model="newTask.Name"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Event City"ng-model="newTask.EventCity"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Event State"ng-model="newTask.EventState"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Address"ng-model="newTask.Address"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="email" name="input" class= "form-control" placeholder = "Promoter Email"ng-model="newTask.PromoterEmail" required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="number" class= "form-control" placeholder = "Full Pass Cost" ng-model="newTask.FullPassCost"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="number" class= "form-control" placeholder = "Hotel Cost" ng-model="newTask.HotelCost"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="panel panel-default">
+				<input type="text" class= "form-control" placeholder = "Event Website" ng-model="newTask.EventURL"/>
+			</div>
+		</div>
+			<div class="text-center">
+				<button class="btn btn-default create" ng-click="createEvent()">Submit</button>
+			</div>
+	</form>
+</section>

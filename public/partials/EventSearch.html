@@ -1,0 +1,64 @@
+<section>
+	<h1> Search Event</h1>
+
+	<div>
+		<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds= "map.bounds">
+		<ui-gmap-markers
+		models= "dataArray"
+		idKey= "dataArray.id"
+		coords = "'self'"
+		>
+	</ui-gmap-markers>
+
+</ui-gmap-google-map>
+</div>
+</section>
+
+<section class= "text-center">
+	<h1>Dance Events</h1>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<div class="input-group">
+				<span class= "input-group-btn">
+					<button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</span>
+				<input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
+
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div ng-repeat= "event in eventsHere | filter: searchText">
+			<div class="panel panel-default">
+				<div class="panel panel-heading">
+					<a ng-href="#/event/{{event.id}}">{{event.Name}}</a>
+				</div>
+				<table class="table">
+					<div>Location: {{event.EventCity}}, {{event.EventState}}</div>
+					<div>Address: {{event.Address}}</div>
+					<div>Promoter: <a href="mailto{{event.PromoterEmail}}"> {{event.PromoterEmail}}</a></div>	
+					<div>FullPass Cost: ${{event.FullPassCost}}</div>
+					<div>Hotel Cost: ${{event.HotelCost}}</div>	
+					<div>Website: <a href="{{event.EventURL}}">{{event.EventURL}} </a></div>	
+				</table>	
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
