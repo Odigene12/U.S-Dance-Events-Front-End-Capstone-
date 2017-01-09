@@ -1,0 +1,20 @@
+{
+    "events":{       
+       "event0":{
+          "Name": "newEvent.Name",
+          "EventCity": "newEvent.EventCity",
+          "EventState": "newEvent.EventState",
+          "EventLocation":{
+            "id": "newEvent.id",
+            "latitude": "newEvent.latitude",
+            "longitude": "newEvent.longitude"
+          },
+          "Address": "newEvent.Address",
+          "PromoterEmail": "newEvent.PromoterEmail", 
+          "FullPassCost": "newEvent.FullPassCost",
+          "HotelCost": "newEvent.HotelCost",
+          "EventURL": "newEvent.EventURL",
+          "uid": "user.uid"
+        }
+    }
+}

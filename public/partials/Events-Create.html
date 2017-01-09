@@ -1,48 +1,41 @@
-<section class= "text-center">
+<section class= "col-md-6 col-md-offset-3" >
 	<h1>Create Your Event</h1>
+	<br>
 	<form>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="text" class= "form-control"placeholder = "Event Name"ng-model="newTask.Name"/>
-			</div>
+		<label>Event Title: </label>
+				<input type="text" class= "form-control" placeholder = "SanFrancisco Salsa Festival" ng-model="newTask.Name"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Event City"ng-model="newTask.EventCity"/>
-			</div>
+		<label>Event City: </label>
+				<input type="text" class= "form-control" placeholder = "Atlanta" ng-model="newTask.EventCity"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Event State"ng-model="newTask.EventState"/>
-			</div>
+		<label>Event State: </label>
+				<input type="text" class= "form-control" placeholder = "GA" ng-model="newTask.EventState"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Address"ng-model="newTask.Address"/>
-			</div>
+		<label>Event Address: </label>
+				<input type="text" class= "form-control" placeholder = "123455 Jim Beam Rd." ng-model="newTask.Address"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="email" name="input" class= "form-control" placeholder = "Promoter Email"ng-model="newTask.PromoterEmail" required/>
-			</div>
+		<label>Promoter Email: </label>
+				<input type="email" name="input" class= "form-control" placeholder = "example@example.com" ng-model="newTask.PromoterEmail" required/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="number" class= "form-control" placeholder = "Full Pass Cost" ng-model="newTask.FullPassCost"/>
-			</div>
+		<label>Full Pass Cost: </label>
+				<input type="number" class= "form-control" placeholder = "500" ng-model="newTask.FullPassCost"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="number" class= "form-control" placeholder = "Hotel Cost" ng-model="newTask.HotelCost"/>
-			</div>
+		<label>Hotel Cost: </label>
+				<input type="number" class= "form-control" placeholder = "700" ng-model="newTask.HotelCost"/>
 		</div>
 		<div class="form-group">
-			<div class="panel panel-default">
-				<input type="text" class= "form-control" placeholder = "Event Website" ng-model="newTask.EventURL"/>
+		<label>Event Title: </label>
+				<input type="text" class= "form-control" placeholder = "somewebsite.com" ng-model="newTask.EventURL"/>
 			</div>
-		</div>
 			<div class="text-center">
-				<button class="btn btn-default create" ng-click="createEvent()">Submit</button>
+				<button class=" btn btn-primary create" ng-click="createEvent()">Submit</button>
 			</div>
 	</form>
 </section>

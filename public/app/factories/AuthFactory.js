@@ -1,67 +1,67 @@
 "use strict";
 
-app.factory("AuthFactory", function(firebaseURL, $http) {
-  // need to use the ref again here because you are talking to firebase again. This needs to be done in any instance in which firebase is talking too.
-  // this line below allows the use of firebase methods.
-  let ref = new Firebase(firebaseURL); 
+app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
+
   let currentUserData = null;
 
-  return {
-    /*
-      Determine if the client is authenticated
-     */
-    isAuthenticated () {
-      // ".getAuth" is a firebase method
-      let authData = ref.getAuth();
-      // if the authentication is real then "true", if not "false"
-      return (authData) ? true : false;
-    },
 
-    getUser () {
-     // this is important and fills the 
-      return currentUserData;
-    },
-
-    /*
-      Authenticate the client via Firebase
-     */
-     // this is a promise for logging in.
-    authenticate (credentials) {
-      return new Promise((resolve, reject) => {
-        // this is also a firebase method.
-        ref.authWithPassword({
-          // this is the object that is being passed in.
-          "email": credentials.email,
-          "password": credentials.password
-        }, (error, authData) => {
-          if (error) {
-            console.log(error);
-            reject(error);
-          } else {
-            console.log("authWithPassword method completed successfully");
-            // so authData is what is returned and "currentUserData" is overwritten.
-            currentUserData = authData;
-            resolve(authData);
-          }
-        });
-      });
-    },
-
-    /*
-      Store each Firebase user's id in the `users` collection
-     */
-    storeUser (authData) {
-      let stringifiedUser = JSON.stringify({ uid: authData.uid });
-
-      return new Promise((resolve, reject) => {
-        $http
-          .post(`${firebaseURL}/users.json`, stringifiedUser)
-          .then(
-            res => resolve(res),
-            err => reject(err)
-          );
-      });
-    }
-
+  //Firebase: Determine if user is authenticated.
+  let isAuthenticated = () => {
+      return firebase.auth().currentUser ? true : false;
   };
+
+//Firebase: Return email, UID for user that is currently logged in.
+  let getUser = () => {
+    return firebase.auth().currentUser;
+  };
+
+// Kills browser cookie with firebase credentials
+  let logout = () => {
+    firebase.auth().signOut();
+  };
+
+//Firebase: Use input credentials to authenticate user.
+  let authenticate = (credentials) => {
+    return $q((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+        .then((authData) =>{
+          resolve(authData);
+        })
+        .catch((error)=>{
+          reject(error);
+        });
+    });
+  };
+
+//Firebase: Register a new user with email and password
+  let registerWithEmail = (user) => {
+    console.log('this is being called')
+     return $q((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then((authData) =>{
+          console.log(authData)
+          resolve(authData);
+        })
+        .catch((error)=>{
+          console.log(error)
+          reject(error);
+        });
+    });
+  };
+
+//Firebase: GOOGLE - Use input credentials to authenticate user.
+  let authenticateGoogle = () => {
+    return $q((resolve, reject) => {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then((authData) => {
+          currentUserData = authData.user;
+          resolve(currentUserData);
+        }).catch((error)=> {
+          reject(error);
+        });
+    });
+  };
+
+  return {isAuthenticated:isAuthenticated, getUser:getUser, logout:logout, registerWithEmail:registerWithEmail, authenticate:authenticate, authenticateGoogle: authenticateGoogle};
 });

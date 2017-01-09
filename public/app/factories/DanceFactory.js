@@ -1,11 +1,11 @@
-app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
+app.factory("EventStorage", function($q, $http, FIREBASE_CONFIG, AuthFactory){
 
 	// This function links to Firebase and gets the user's data of events that he or she created.
 	var getUserEvents = function (){
 		var userevents = [];
 		let user = AuthFactory.getUser();
 		return $q(function (resolve, reject){
-			$http.get(`${firebaseURL}events.json?orderBy="uid"&equalTo="${user.uid}"`)
+			$http.get(`${FIREBASE_CONFIG.databaseURL}/events.json?orderBy="uid"&equalTo="${user.uid}"`)
 			.success(function (eventObject){
 				var eventsList = eventObject;
 					// this is looping through array of objects that it got from firebase through the events json and so on and extracting each object.
@@ -28,7 +28,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 	var deleteEvent = function(eventId) {
 		return $q(function(resolve, reject){
 			$http
-			.delete(firebaseURL + "events/" + eventId + ".json")
+			.delete(FIREBASE_CONFIG.databaseURL + "/events/" + eventId + ".json")
 			.success(function(objectFromFirebase){
 				arrangeEventLocationIDs();
 				resolve(objectFromFirebase);
@@ -53,7 +53,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 	var postNewEvent = function(newEvent) {
 		let user = AuthFactory.getUser();
 		return $q(function(resolve, reject){
-			$http.post("https://front-end-capstone-402db.firebaseio.com/database/data/events.json",
+			$http.post(FIREBASE_CONFIG.databaseURL + "/events.json",
 				JSON.stringify({
 					Name: newEvent.Name,
 					EventCity: newEvent.EventCity,
@@ -81,7 +81,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 
 	var getEvent = function (eventId){
 		return $q(function(resolve, reject){
-			$http.get(firebaseURL + "events/" + eventId + ".json")
+			$http.get(FIREBASE_CONFIG.databaseURL + "/events/" + eventId + ".json")
 			.success(function(eventObject){
 				resolve(eventObject);
 			})
@@ -96,7 +96,7 @@ app.factory("EventStorage", function($q, $http, firebaseURL, AuthFactory){
 		let user = AuthFactory.getUser();
 		return $q(function(resolve, reject) {
 			$http.put(
-				firebaseURL + "events/" + eventId + ".json",
+				FIREBASE_CONFIG.databaseURL + "/events/" + eventId + ".json",
 				JSON.stringify({
 					Name: newEvent.Name,
 					EventCity: newEvent.EventCity,

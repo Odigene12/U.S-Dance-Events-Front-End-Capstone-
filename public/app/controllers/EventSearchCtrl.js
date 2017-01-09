@@ -1,6 +1,6 @@
 app.controller("EventSearchCtrl", function($scope, EventStorage){
 	$scope.dataArray = []
-	$scope.eventsHere = {}
+	$scope.eventsHere = []
 
 	$scope.map = { 
 		center: { 

@@ -9,10 +9,10 @@
 				<table class="table">
 					<div>Location: {{event.EventCity}},{{event.EventState}}</div>
 					<div>Address: {{event.Address}}</div>
-					<div>Promoter: {{event.PromoterEmail}}</div>	
+					<div>Promoter: <a href="mailto{{event.PromoterEmail}}">{{event.PromoterEmail}}</a></div>	
 					<div>FullPass: {{event.FullPassCost}}</div>	
 					<div>Hotel: {{event.HotelCost}}</div>	
-					<div>Website: {{event.EventURL}}</div>	
+					<div>Website: <a href="{{event.EventURL}}"> {{event.EventURL}} </a></div>	
 				</table>	
 				<div><button class="btn btn-primary" ng-click ="deleteEvent(event.id)">Delete
 				</button></div>
